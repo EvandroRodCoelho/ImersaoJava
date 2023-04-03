@@ -12,16 +12,16 @@ public class App {
         String ImdbUrl = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopMovies.json";
         String NasaUrl = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&start_date=2022-06-12&end_date=2022-06-14";
         // extrair só os dados que interessam (titulo, poster, classificação)
+        String LanguagesUrl = "http://localhost:8080/languages";
         var http = new ClientHttp();
-        String json  = http.getDatas(NasaUrl);
+        String json  = http.getDatas(LanguagesUrl);
 
 
-
+        var extractorImdb = new ImdbContentExtractor();
         // exibir e manipular os dados 
-
-        var extractor = new NasaContentExtractor();
-        List<Content> contents = extractor.extractContent(json);
-        
+        // var extractor = new NasaContentExtractor();
+        // List<Content> contents = extractor.extractContent(json);
+        List<Content> contents = extractorImdb.extractContent(json);
         for (int i = 0; i < 3; i++) {
             Content content = contents.get(i);
 
